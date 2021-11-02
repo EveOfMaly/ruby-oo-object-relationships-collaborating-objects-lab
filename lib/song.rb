@@ -24,12 +24,13 @@ class Song
 
 
     def artist_name=(name)
-        new_instance = Artist.new(artist) 
-        new_instance.name = self 
-        self.artist = new_instance
-        new_instance
+        if (new_artist = Artist.all.detect {|i| i.name == name})
+            self.artist = new_artist
+        else
+            new_artist =  Artist.new(name)
+            self.artist = new_artist
+        end
     end
-
 
 
 end
